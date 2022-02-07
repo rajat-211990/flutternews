@@ -89,7 +89,7 @@ class _HomeState extends State<Home> {
                        imageUrl: articles[index].urlToImage,
                        title: articles[index].title,
                        desc: articles[index].description,
-         
+                       url:articles[index].url,
                      );
                    }
          
@@ -148,8 +148,10 @@ class BlogTile extends StatelessWidget {
     return GestureDetector(
       onTap: (){
 
-        Navigator.push(context, MaterialPageRoute(builder: (context)=>ArticleView()));
-      }
+        Navigator.push(context, MaterialPageRoute(builder: (context)=>ArticleView(
+              blogUrl : url,
+        )));
+      },
       child: Container(
         margin: EdgeInsets.only(bottom:16),
         child: Column(

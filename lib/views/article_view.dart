@@ -1,9 +1,11 @@
-import 'package:flutter/material.dart';
+import 'dart:async';
 
+import 'package:flutter/material.dart';
+import 'package:webview_flutter/webview_flutter.dart';
 class ArticleView extends StatefulWidget {
   
-  final String imageUrl;
-  const ArticleView({required this.imageUrl});
+  final String blogUrl;
+  const ArticleView({required this.blogUrl});
   
 
   @override
@@ -11,10 +13,36 @@ class ArticleView extends StatefulWidget {
 }
 
 class _ArticleViewState extends State<ArticleView> {
+  final Completer<WebViewController> _completer = Completer<WebViewController>();
+  
+  
+  
   @override
   Widget build(BuildContext context) {
-    return Container(
-      
+    return Scaffold(
+      appBar: AppBar(
+          title: Row( mainAxisAlignment: MainAxisAlignment.center,
+            children: <Widget>[
+              Text("flutter"),
+              Text("News", style:TextStyle(
+                color:Colors.white)
+                )
+            ],
+          ),
+          centerTitle: true,
+       elevation: 2.0,
+      ),
+
+
+      body: Container(
+        child: WebView(
+          initialUrl: widget.blogUrl,
+          onWebViewCreated:((WebViewController webViewController){
+            _completer.complete(webViewController);
+          })
+        ),
+        
+      ),
     );
   }
 }

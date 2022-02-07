@@ -27,6 +27,7 @@ class News{
               // articleModel.url = element["url"];
               // articleModel.content = element["content"];
               articleModel.urlToImage = element["urlToImage"];
+              articleModel.url = element["url"];
             // author: element['author'],
             // description: element['description'],
             // url: element['url'],
